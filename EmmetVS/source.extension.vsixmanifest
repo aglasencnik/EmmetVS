@@ -1,21 +1,28 @@
 ﻿<?xml version="1.0" ?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-  <Metadata>
-    <Identity Id="EmmetVS.45ebdcc6-7813-4798-be08-7fbe376c5d47" Version="1.0" Language="en-US" Publisher="Amadej Glasenčnik" />
-    <DisplayName>EmmetVS</DisplayName>
-    <Description>Empty VSIX Project.</Description>
-    <Icon>Resources\Icon.png</Icon>
-    <PreviewImage>Resources\Icon.png</PreviewImage>
-  </Metadata>
-  <Installation>
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
-      <ProductArchitecture>amd64</ProductArchitecture>
-    </InstallationTarget>
-  </Installation>
-  <Prerequisites>
-    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,)" DisplayName="Visual Studio core editor" />
-  </Prerequisites>
-  <Assets>
-    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-  </Assets>
+    <Metadata>
+        <Identity Id="EmmetVS.45ebdcc6-7813-4798-be08-7fbe376c5d47" Version="0.0.1" Language="en-US" Publisher="Amadej Glasenčnik" />
+        <DisplayName>EmmetVS</DisplayName>
+        <Description xml:space="preserve">Supercharge your Visual Studio environment with the power of Emmet! Effortlessly expand abbreviations into complex HTML/XML and CSS code snippets. Streamline your web development process and elevate your coding efficiency like never before.</Description>
+        <MoreInfo>https://github.com/aglasencnik/EmmetVS</MoreInfo>
+        <License>Resources\LICENSE.txt</License>
+        <GettingStartedGuide>https://github.com/aglasencnik/EmmetVS/wiki/getting-started</GettingStartedGuide>
+        <ReleaseNotes>https://github.com/aglasencnik/EmmetVS/releases</ReleaseNotes>
+        <Icon>Resources\Icon.png</Icon>
+        <PreviewImage>Resources\Icon.png</PreviewImage>
+        <Tags>visual-studio, vsix, emmet, html, css, xml, snippets, tools</Tags>
+        <Preview>true</Preview>
+    </Metadata>
+    <Installation>
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
+            <ProductArchitecture>amd64</ProductArchitecture>
+        </InstallationTarget>
+    </Installation>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
+    </Assets>
 </PackageManifest>
