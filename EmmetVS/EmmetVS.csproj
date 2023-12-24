@@ -73,6 +73,7 @@
     <Compile Include="Enums\SelfClosingStyle.cs" />
     <Compile Include="Enums\StringCase.cs" />
     <Compile Include="Helpers\ExtensionInitializationHelper.cs" />
+    <Compile Include="Helpers\IncrementDecrementHelper.cs" />
     <Compile Include="Helpers\OptionsHelper.cs" />
     <Compile Include="Helpers\OptionsUserControlHelper.cs" />
     <Compile Include="Helpers\SyntaxHelper.cs" />

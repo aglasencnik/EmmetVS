@@ -1,6 +1,7 @@
 ﻿using Community.VisualStudio.Toolkit;
 using Community.VisualStudio.Toolkit.DependencyInjection;
 using Community.VisualStudio.Toolkit.DependencyInjection.Core;
+using EmmetVS.Helpers;
 
 namespace EmmetVS.Commands;
 
@@ -8,12 +9,8 @@ namespace EmmetVS.Commands;
 /// Represents the Increment by one command.
 /// </summary>
 [Command(PackageIds.IncrementByOneCommand)]
-internal sealed class IncrementByOneCommand : BaseDICommand
+internal sealed class IncrementByOneCommand(DIToolkitPackage package) : BaseDICommand(package)
 {
-    public IncrementByOneCommand(DIToolkitPackage package) : base(package)
-    {
-    }
-
     /// <summary>
     /// Executes the command.
     /// </summary>
@@ -21,6 +18,13 @@ internal sealed class IncrementByOneCommand : BaseDICommand
     /// <returns>A task that represents the asynchronous operation.</returns>
     protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
     {
-        await base.ExecuteAsync(e);
+        try
+        {
+            await IncrementDecrementHelper.ProcessNumberInLineAsync((ref double parsedNumber) => parsedNumber += 1);
+        }
+        catch (Exception ex)
+        {
+            await ex.LogAsync("Error while incrementing by one.");
+        }
     }
 }
