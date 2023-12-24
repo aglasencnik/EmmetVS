@@ -1,6 +1,7 @@
 ﻿using Community.VisualStudio.Toolkit;
 using Community.VisualStudio.Toolkit.DependencyInjection;
 using Community.VisualStudio.Toolkit.DependencyInjection.Core;
+using EmmetVS.Helpers;
 
 namespace EmmetVS.Commands;
 
@@ -8,12 +9,8 @@ namespace EmmetVS.Commands;
 /// Represents the Decrement by ten command.
 /// </summary>
 [Command(PackageIds.DecrementByTenCommand)]
-internal sealed class DecrementByTenCommand : BaseDICommand
+internal sealed class DecrementByTenCommand(DIToolkitPackage package) : BaseDICommand(package)
 {
-    public DecrementByTenCommand(DIToolkitPackage package) : base(package)
-    {
-    }
-
     /// <summary>
     /// Executes the command.
     /// </summary>
@@ -21,6 +18,13 @@ internal sealed class DecrementByTenCommand : BaseDICommand
     /// <returns>A task that represents the asynchronous operation.</returns>
     protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
     {
-        await base.ExecuteAsync(e);
+        try
+        {
+            await IncrementDecrementHelper.ProcessNumberInLineAsync((ref double parsedNumber) => parsedNumber -= 10);
+        }
+        catch (Exception ex)
+        {
+            await ex.LogAsync("Error while decrementing by ten.");
+        }
     }
 }

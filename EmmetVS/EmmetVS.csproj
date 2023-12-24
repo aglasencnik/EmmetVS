@@ -70,11 +70,17 @@
     <Compile Include="Commands\UpdateImageSizeCommand.cs" />
     <Compile Include="Commands\WrapWithAbbreviationCommand.cs" />
     <Compile Include="Enums\AttributeQuotes.cs" />
+    <Compile Include="Enums\FileType.cs" />
+    <Compile Include="Enums\ImageSourceType.cs" />
     <Compile Include="Enums\SelfClosingStyle.cs" />
     <Compile Include="Enums\StringCase.cs" />
+    <Compile Include="Helpers\DocumentHelper.cs" />
     <Compile Include="Helpers\ExtensionInitializationHelper.cs" />
+    <Compile Include="Helpers\HttpClientHelper.cs" />
+    <Compile Include="Helpers\IncrementDecrementHelper.cs" />
     <Compile Include="Helpers\OptionsHelper.cs" />
     <Compile Include="Helpers\OptionsUserControlHelper.cs" />
+    <Compile Include="Helpers\StylesheetHelper.cs" />
     <Compile Include="Helpers\SyntaxHelper.cs" />
     <Compile Include="Options\ConfigurationOptions.cs" />
     <Compile Include="Options\CssOptions.cs" />
@@ -175,6 +181,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Design" />
     <Reference Include="System.ComponentModel.Composition" />
