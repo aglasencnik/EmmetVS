@@ -86,6 +86,13 @@ internal sealed class GoToMatchingPairCommand : BaseDICommand
                 if (matchResult is null)
                     return;
 
+                while (matchResult.Type != EmmetNetSharp.Enums.CssMatchType.Selector)
+                {
+                    matchResult = _cssMatcherService.Match(documentContent, matchResult.Start - 1);
+                    if (matchResult is null)
+                        return;
+                }
+
                 if (position >= matchResult.Start && position <= matchResult.BodyStart)
                 {
                     var point = new SnapshotPoint(docView.TextView.TextSnapshot, matchResult.End);
