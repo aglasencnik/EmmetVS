@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="EmmetVS.Options.CustomOptionPages.FileTypeEntryDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EmmetVS.Options.CustomOptionPages"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="200">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Label for Key -->
+            <RowDefinition Height="Auto"/>
+            <!-- TextBox for Key -->
+            <RowDefinition Height="Auto"/>
+            <!-- StackPanel with buttons -->
+        </Grid.RowDefinitions>
+
+        <!-- Label for Key -->
+        <Label x:Name="lblValue" Content="Key:" Grid.Row="0" Margin="0,0,0,5"/>
+
+        <!-- TextBox for Key -->
+        <TextBox x:Name="txtValue" Grid.Row="1" Margin="0,0,0,10" />
+
+        <!-- StackPanel with buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnAction" Content="Save" Width="80" Margin="0,0,10,0" Click="BtnAction_Click"/>
+            <Button x:Name="btnCancel" Content="Cancel" Width="80" Click="BtnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
