@@ -179,6 +179,10 @@
       <VsixSubPath>Scripts</VsixSubPath>
       <Visible>false</Visible>
     </Content>
+    <Content Include="$(PkgEmmetNetSharp)\content\Scripts\*.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Scripts\%(Filename)%(Extension)</Link>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />

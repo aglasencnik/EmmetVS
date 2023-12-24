@@ -1,4 +1,7 @@
-﻿namespace EmmetVS.Helpers;
+﻿using EmmetVS.Enums;
+using System.Linq;
+
+namespace EmmetVS.Helpers;
 
 internal static class SyntaxHelper
 {
@@ -13,4 +16,20 @@ internal static class SyntaxHelper
     /// </summary>
     /// <returns>Array of stylesheet syntaxes.</returns>
     internal static string[] GetStylesheetSyntaxes() => new[] { "css", "scss", "sass", "less", "sss", "stylus" };
+
+    /// <summary>
+    /// Gets the syntax type of the document.
+    /// </summary>
+    /// <param name="extension">File extension</param>
+    /// <returns>FileType</returns>
+    internal static FileType GetSyntaxType(string extension)
+    {
+        if (GetMarkupSyntaxes().Contains(extension.TrimStart('.')))
+            return FileType.Markup;
+
+        if (GetStylesheetSyntaxes().Contains(extension.TrimStart('.')))
+            return FileType.Stylesheet;
+
+        return FileType.None;
+    }
 }
