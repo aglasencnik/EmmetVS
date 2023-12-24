@@ -70,6 +70,7 @@
     <Compile Include="Commands\UpdateImageSizeCommand.cs" />
     <Compile Include="Commands\WrapWithAbbreviationCommand.cs" />
     <Compile Include="Enums\AttributeQuotes.cs" />
+    <Compile Include="Enums\FileType.cs" />
     <Compile Include="Enums\ImageSourceType.cs" />
     <Compile Include="Enums\SelfClosingStyle.cs" />
     <Compile Include="Enums\StringCase.cs" />
