@@ -1,17 +1,372 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <Extern href="stdidcmd.h"/>
-  <Extern href="vsshlids.h"/>
-  <Include href="KnownImageIds.vsct"/>
-  <Include href="VSGlobals.vsct"/>
+	<Extern href="stdidcmd.h"/>
+	<Extern href="vsshlids.h"/>
+	<Include href="KnownImageIds.vsct"/>
+	<Include href="VSGlobals.vsct"/>
 
-  <Commands package="EmmetVS">
-  </Commands>
+	<Commands package="EmmetVS">
+		<!-- Defined Menus -->
+		<Menus>
+			<!-- Emmet Menu Under Tools -> Snippets -->
+			<Menu guid="EmmetVS" id="EmmetToolsSnippetsMenu" priority="0x0100" type="Menu">
+				<Parent guid="VSMainMenu" id="Tools.SnippetsGroup" />
+				<Strings>
+					<ButtonText>Emmet</ButtonText>
+				</Strings>
+			</Menu>
+		</Menus>
 
-  <Symbols>
-    <GuidSymbol name="EmmetVS" value="{cac45f96-4a68-4790-98b3-aa7525c67da5}">
-      
-    </GuidSymbol>
-  </Symbols>
+		<!-- Defined Groups -->
+		<Groups>
+			<!-- Abbreviation and Expansion Group -->
+			<Group guid="EmmetVS" id="AbbreviationAndExpansionGroup" priority="0x0100">
+				<Parent guid="EmmetVS" id="EmmetToolsSnippetsMenu" />
+			</Group>
+
+			<!-- Tag Balancing Group -->
+			<Group guid="EmmetVS" id="TagBalancingGroup" priority="0x0200">
+				<Parent guid="EmmetVS" id="EmmetToolsSnippetsMenu" />
+			</Group>
+
+			<!-- Tag and HTML Structure Management Group -->
+			<Group guid="EmmetVS" id="TagAndHTMLManagementGroup" priority="0x0300">
+				<Parent guid="EmmetVS" id="EmmetToolsSnippetsMenu" />
+			</Group>
+
+			<!-- Navigation Group -->
+			<Group guid="EmmetVS" id="NavigationGroup" priority="0x0400">
+				<Parent guid="EmmetVS" id="EmmetToolsSnippetsMenu" />
+			</Group>
+
+			<!-- Selection Group -->
+			<Group guid="EmmetVS" id="SelectionGroup" priority="0x0500">
+				<Parent guid="EmmetVS" id="EmmetToolsSnippetsMenu" />
+			</Group>
+
+			<!-- Commenting and Code Presentation Group -->
+			<Group guid="EmmetVS" id="CommentingAndCodePresentationGroup" priority="0x0600">
+				<Parent guid="EmmetVS" id="EmmetToolsSnippetsMenu" />
+			</Group>
+
+			<!-- Numeric and Mathematical Operations Group -->
+			<Group guid="EmmetVS" id="NumericAndMathOperationsGroup" priority="0x0700">
+				<Parent guid="EmmetVS" id="EmmetToolsSnippetsMenu" />
+			</Group>
+
+			<!-- Numeric Group -->
+			<Group guid="EmmetVS" id="NumericGroup" priority="0x0800">
+				<Parent guid="EmmetVS" id="EmmetToolsSnippetsMenu" />
+			</Group>
+
+			<!-- Image and Data Encoding Group -->
+			<Group guid="EmmetVS" id="ImageAndDataEncodingGroup" priority="0x0900">
+				<Parent guid="EmmetVS" id="EmmetToolsSnippetsMenu" />
+			</Group>
+		</Groups>
+
+		<!-- Defined Button Commands -->
+		<Buttons>
+			<!-- Expand Abbreviation Button -->
+			<Button guid="EmmetVS" id="ExpandAbbreviationCommand" priority="0x0100" type="Button">
+				<Parent guid="EmmetVS" id="AbbreviationAndExpansionGroup" />
+				<Icon guid="ImageCatalogGuid" id="ExpandAll" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Expand Abbreviation (Tab)</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Wrap with Abbreviation Button -->
+			<Button guid="EmmetVS" id="WrapWithAbbreviationCommand" priority="0x0200" type="Button">
+				<Parent guid="EmmetVS" id="AbbreviationAndExpansionGroup" />
+				<Icon guid="ImageCatalogGuid" id="WrapPanel" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Wrap with Abbreviation</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Balance Outward Button -->
+			<Button guid="EmmetVS" id="BalanceOutwardCommand" priority="0x0100" type="Button">
+				<Parent guid="EmmetVS" id="TagBalancingGroup" />
+				<Icon guid="ImageCatalogGuid" id="Output" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Balance Outward</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Balance Inward Button -->
+			<Button guid="EmmetVS" id="BalanceInwardCommand" priority="0x0200" type="Button">
+				<Parent guid="EmmetVS" id="TagBalancingGroup" />
+				<Icon guid="ImageCatalogGuid" id="Input" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Balance Inward</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Go to Matching Pair Button -->
+			<Button guid="EmmetVS" id="GoToMatchingPairCommand" priority="0x0200" type="Button">
+				<Parent guid="EmmetVS" id="TagAndHTMLManagementGroup" />
+				<Icon guid="ImageCatalogGuid" id="Search" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Go to Matching Pair</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Split/Join Tag Button -->
+			<Button guid="EmmetVS" id="SplitJoinTagCommand" priority="0x0300" type="Button">
+				<Parent guid="EmmetVS" id="TagAndHTMLManagementGroup" />
+				<Icon guid="ImageCatalogGuid" id="Split" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Split/Join Tag</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Remove Tag Button -->
+			<Button guid="EmmetVS" id="RemoveTagCommand" priority="0x0400" type="Button">
+				<Parent guid="EmmetVS" id="TagAndHTMLManagementGroup" />
+				<Icon guid="ImageCatalogGuid" id="DeleteTag" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Remove Tag</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Merge Lines Button -->
+			<Button guid="EmmetVS" id="MergeLinesCommand" priority="0x0500" type="Button">
+				<Parent guid="EmmetVS" id="TagAndHTMLManagementGroup" />
+				<Icon guid="ImageCatalogGuid" id="Merge" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Merge Lines</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Next Edit Point Button -->
+			<Button guid="EmmetVS" id="NextEditPointCommand" priority="0x0100" type="Button">
+				<Parent guid="EmmetVS" id="NavigationGroup" />
+				<Icon guid="ImageCatalogGuid" id="FindNext" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Next Edit Point</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Previous Edit Point Button -->
+			<Button guid="EmmetVS" id="PreviousEditPointCommand" priority="0x0200" type="Button">
+				<Parent guid="EmmetVS" id="NavigationGroup" />
+				<Icon guid="ImageCatalogGuid" id="FindPrevious" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Previous Edit Point</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Select Next Item Button -->
+			<Button guid="EmmetVS" id="SelectNextItemCommand" priority="0x0100" type="Button">
+				<Parent guid="EmmetVS" id="SelectionGroup" />
+				<Icon guid="ImageCatalogGuid" id="Next" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Select Next Item</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Select Previous Item Button -->
+			<Button guid="EmmetVS" id="SelectPreviousItemCommand" priority="0x0200" type="Button">
+				<Parent guid="EmmetVS" id="SelectionGroup" />
+				<Icon guid="ImageCatalogGuid" id="Previous" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Select Previous Item</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Toggle Comment Button -->
+			<Button guid="EmmetVS" id="ToggleCommentCommand" priority="0x0100" type="Button">
+				<Parent guid="EmmetVS" id="CommentingAndCodePresentationGroup" />
+				<Icon guid="ImageCatalogGuid" id="CommentCode" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Toggle Comment</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Reflect CSS Value Button -->
+			<Button guid="EmmetVS" id="ReflectCSSValueCommand" priority="0x0100" type="Button">
+				<Parent guid="EmmetVS" id="CommentingAndCodePresentationGroup" />
+				<Icon guid="ImageCatalogGuid" id="ShowReflexiveView" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Reflect CSS Value</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Update Image Size Button -->
+			<Button guid="EmmetVS" id="UpdateImageSizeCommand" priority="0x0200" type="Button">
+				<Parent guid="EmmetVS" id="NumericAndMathOperationsGroup" />
+				<Icon guid="ImageCatalogGuid" id="Resize" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Update Image Size</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Evaluate Math Expression Button -->
+			<Button guid="EmmetVS" id="EvaluateMathExpressionCommand" priority="0x0300" type="Button">
+				<Parent guid="EmmetVS" id="NumericAndMathOperationsGroup" />
+				<Icon guid="ImageCatalogGuid" id="CalculatorMethod" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Evaluate Math Expression</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Increment by 1 Button -->
+			<Button guid="EmmetVS" id="IncrementByOneCommand" priority="0x0100" type="Button">
+				<Parent guid="EmmetVS" id="NumericGroup" />
+				<Icon guid="ImageCatalogGuid" id="IncreaseDecimals" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Increment by 1</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Decrement by 1 Button -->
+			<Button guid="EmmetVS" id="DecrementByOneCommand" priority="0x0200" type="Button">
+				<Parent guid="EmmetVS" id="NumericGroup" />
+				<Icon guid="ImageCatalogGuid" id="DecreaseDecimals" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Decrement by 1</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Increment by 0.1 Button -->
+			<Button guid="EmmetVS" id="IncrementByPointOneCommand" priority="0x0300" type="Button">
+				<Parent guid="EmmetVS" id="NumericGroup" />
+				<Icon guid="ImageCatalogGuid" id="IncreaseDecimals" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Increment by 0.1</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Decrement by 0.1 Button -->
+			<Button guid="EmmetVS" id="DecrementByPointOneCommand" priority="0x0400" type="Button">
+				<Parent guid="EmmetVS" id="NumericGroup" />
+				<Icon guid="ImageCatalogGuid" id="DecreaseDecimals" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Decrement by 0.1</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Increment by 10 Button -->
+			<Button guid="EmmetVS" id="IncrementByTenCommand" priority="0x0500" type="Button">
+				<Parent guid="EmmetVS" id="NumericGroup" />
+				<Icon guid="ImageCatalogGuid" id="IncreaseDecimals" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Increment by 10</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Decrement by 10 Button -->
+			<Button guid="EmmetVS" id="DecrementByTenCommand" priority="0x0600" type="Button">
+				<Parent guid="EmmetVS" id="NumericGroup" />
+				<Icon guid="ImageCatalogGuid" id="DecreaseDecimals" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Decrement by 10</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- Encode/Decode Image to data:URL Button -->
+			<Button guid="EmmetVS" id="EncodeDecodeImageToDataURLCommand" priority="0x0200" type="Button">
+				<Parent guid="EmmetVS" id="ImageAndDataEncodingGroup" />
+				<Icon guid="ImageCatalogGuid" id="TransformListItem" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>
+					<ButtonText>Encode/Decode Image to data:URL</ButtonText>
+				</Strings>
+			</Button>
+		</Buttons>
+	</Commands>
+
+	<KeyBindings>
+		<KeyBinding guid="EmmetVS" id="ExpandAbbreviationCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" key2="VK_TAB" />
+		<KeyBinding guid="EmmetVS" id="WrapWithAbbreviationCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="A" />
+		<KeyBinding guid="EmmetVS" id="BalanceOutwardCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="D" />
+		<KeyBinding guid="EmmetVS" id="BalanceInwardCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="D" />
+		<KeyBinding guid="EmmetVS" id="GoToMatchingPairCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="T" />
+		<KeyBinding guid="EmmetVS" id="SplitJoinTagCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="J" />
+		<KeyBinding guid="EmmetVS" id="RemoveTagCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="K" />
+		<KeyBinding guid="EmmetVS" id="MergeLinesCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="M" />
+		<KeyBinding guid="EmmetVS" id="NextEditPointCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_LEFT" />
+		<KeyBinding guid="EmmetVS" id="PreviousEditPointCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_RIGHT" />
+		<KeyBinding guid="EmmetVS" id="SelectNextItemCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="VK_OEM_PERIOD" />
+		<KeyBinding guid="EmmetVS" id="SelectPreviousItemCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="VK_OEM_COMMA" />
+		<KeyBinding guid="EmmetVS" id="ToggleCommentCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="VK_OEM_2" />
+		<KeyBinding guid="EmmetVS" id="ReflectCSSValueCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="B" />
+		<KeyBinding guid="EmmetVS" id="UpdateImageSizeCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="U" />
+		<KeyBinding guid="EmmetVS" id="EvaluateMathExpressionCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="Y" />
+		<KeyBinding guid="EmmetVS" id="IncrementByOneCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="VK_UP" />
+		<KeyBinding guid="EmmetVS" id="DecrementByOneCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="VK_DOWN" />
+		<KeyBinding guid="EmmetVS" id="IncrementByPointOneCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_UP" />
+		<KeyBinding guid="EmmetVS" id="DecrementByPointOneCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_DOWN" />
+		<KeyBinding guid="EmmetVS" id="IncrementByTenCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="VK_UP" />
+		<KeyBinding guid="EmmetVS" id="DecrementByTenCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="VK_DOWN" />
+		<KeyBinding guid="EmmetVS" id="EncodeDecodeImageToDataURLCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="I" />
+	</KeyBindings>
+
+	<Symbols>
+		<!-- Main Guid Symbol -->
+		<GuidSymbol name="EmmetVS" value="{cac45f96-4a68-4790-98b3-aa7525c67da5}">
+			<!-- Menu ID Symbols -->
+			<IDSymbol name="EmmetToolsSnippetsMenu" value="0x1001" />
+
+			<!-- Group ID Symbols -->
+			<IDSymbol name="AbbreviationAndExpansionGroup" value="0x2001" />
+			<IDSymbol name="TagBalancingGroup" value="0x2002" />
+			<IDSymbol name="TagAndHTMLManagementGroup" value="0x2003" />
+			<IDSymbol name="NavigationGroup" value="0x2004" />
+			<IDSymbol name="SelectionGroup" value="0x2005" />
+			<IDSymbol name="CommentingAndCodePresentationGroup" value="0x2006" />
+			<IDSymbol name="NumericAndMathOperationsGroup" value="0x2007" />
+			<IDSymbol name="NumericGroup" value="0x2008" />
+			<IDSymbol name="ImageAndDataEncodingGroup" value="0x2009" />
+
+			<!-- Command ID Symbols -->
+			<IDSymbol name="ExpandAbbreviationCommand" value="0x3001" />
+			<IDSymbol name="WrapWithAbbreviationCommand" value="0x3002" />
+			<IDSymbol name="BalanceOutwardCommand" value="0x3003" />
+			<IDSymbol name="BalanceInwardCommand" value="0x3004" />
+			<IDSymbol name="GoToMatchingPairCommand" value="0x3005" />
+			<IDSymbol name="SplitJoinTagCommand" value="0x3006" />
+			<IDSymbol name="RemoveTagCommand" value="0x3007" />
+			<IDSymbol name="MergeLinesCommand" value="0x3008" />
+			<IDSymbol name="NextEditPointCommand" value="0x3009" />
+			<IDSymbol name="PreviousEditPointCommand" value="0x3010" />
+			<IDSymbol name="SelectNextItemCommand" value="0x3011" />
+			<IDSymbol name="SelectPreviousItemCommand" value="0x3012" />
+			<IDSymbol name="ToggleCommentCommand" value="0x3013" />
+			<IDSymbol name="ReflectCSSValueCommand" value="0x3014" />
+			<IDSymbol name="UpdateImageSizeCommand" value="0x3015" />
+			<IDSymbol name="EvaluateMathExpressionCommand" value="0x3016" />
+			<IDSymbol name="IncrementByOneCommand" value="0x3017" />
+			<IDSymbol name="DecrementByOneCommand" value="0x3018" />
+			<IDSymbol name="IncrementByPointOneCommand" value="0x3019" />
+			<IDSymbol name="DecrementByPointOneCommand" value="0x3020" />
+			<IDSymbol name="IncrementByTenCommand" value="0x3021" />
+			<IDSymbol name="DecrementByTenCommand" value="0x3022" />
+			<IDSymbol name="EncodeDecodeImageToDataURLCommand" value="0x3023" />
+		</GuidSymbol>
+	</Symbols>
 </CommandTable>
