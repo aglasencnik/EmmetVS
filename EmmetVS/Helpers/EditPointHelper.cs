@@ -1,4 +1,5 @@
 ﻿using Community.VisualStudio.Toolkit;
+using System.Collections.Generic;
 
 namespace EmmetVS.Helpers;
 
@@ -42,5 +43,53 @@ internal static class EditPointHelper
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// Gets the edit points.
+    /// </summary>
+    /// <param name="doc">Document content</param>
+    /// <param name="pos">Caret position</param>
+    /// <returns>List of all edit points</returns>
+    internal static List<int> GetEditPoints(string doc, int pos)
+    {
+        var docLength = doc.Length;
+        var editPoints = new List<int>();
+
+        while (pos < docLength)
+        {
+            pos++;
+            var curChar = (docLength - 1 >= pos && pos >= 0) ? doc[pos] : default;
+            var next = (docLength - 1 >= pos + 1 && pos + 1 >= 0) ? doc[pos + 1] : default;
+            var prev = (pos - 1 >= 0 && pos - 1 >= 0) ? doc[pos - 1] : default;
+
+            if ((curChar == '\'' || curChar == '"') && next == curChar && prev == '=')
+            {
+                editPoints.Add(pos + 1); // Empty attribute value
+                continue;
+            }
+
+            if (curChar == '<' && prev == '>')
+            {
+                editPoints.Add(pos); // Between tags
+                continue;
+            }
+
+            if (curChar == '\n' || curChar == '\r')
+            {
+                // Find the start and end of the current line
+                var lineStart = doc.LastIndexOf('\n', pos - 1) + 1;
+                var lineEnd = doc.IndexOf('\n', pos);
+                if (lineEnd == -1) lineEnd = docLength; // If no newline, the end is the end of the document
+
+                // Get the text of the line
+                var line = doc.Substring(lineStart, lineEnd - lineStart);
+
+                if (string.IsNullOrWhiteSpace(line))
+                    editPoints.Add(lineEnd - ((line.EndsWith("\n") || line.EndsWith("\r")) ? 1 : 0)); // Empty line
+            }
+        }
+
+        return editPoints;
     }
 }

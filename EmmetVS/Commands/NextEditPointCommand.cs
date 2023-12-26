@@ -35,8 +35,8 @@ internal sealed class NextEditPointCommand(DIToolkitPackage package) : BaseDICom
             if (string.IsNullOrWhiteSpace(activeDocumentExtension))
                 return;
 
-            var syntaxType = SyntaxHelper.GetSyntaxType(activeDocumentExtension);
-            if (syntaxType != FileType.Markup)
+            var fileType = SyntaxHelper.GetFileType(activeDocumentExtension);
+            if (fileType != FileType.Markup)
                 return;
             
             var pos = EditPointHelper.FindNewEditPoint(docView, 1);

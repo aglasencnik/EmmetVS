@@ -1,6 +1,12 @@
 ﻿using Community.VisualStudio.Toolkit;
 using Community.VisualStudio.Toolkit.DependencyInjection;
 using Community.VisualStudio.Toolkit.DependencyInjection.Core;
+using EmmetNetSharp.Interfaces;
+using EmmetVS.Enums;
+using EmmetVS.Helpers;
+using EmmetVS.Options;
+using Microsoft.VisualStudio.Text;
+using System.IO;
 
 namespace EmmetVS.Commands;
 
@@ -10,8 +16,12 @@ namespace EmmetVS.Commands;
 [Command(PackageIds.SelectNextItemCommand)]
 internal sealed class SelectNextItemCommand : BaseDICommand
 {
-    public SelectNextItemCommand(DIToolkitPackage package) : base(package)
+    private readonly IActionUtilsService _actionUtilsService;
+
+    public SelectNextItemCommand(DIToolkitPackage package,
+        IActionUtilsService actionUtilsService) : base(package)
     {
+        _actionUtilsService = actionUtilsService;
     }
 
     /// <summary>
@@ -21,6 +31,34 @@ internal sealed class SelectNextItemCommand : BaseDICommand
     /// <returns>A task that represents the asynchronous operation.</returns>
     protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
     {
-        await base.ExecuteAsync(e);
+        try
+        {
+            if (!GeneralOptions.Instance.Enable || !GeneralOptions.Instance.EnableAdvanced)
+                return;
+
+            var docView = await VS.Documents.GetActiveDocumentViewAsync();
+            if (docView?.TextView is null)
+                return;
+
+            var activeDocumentExtension = Path.GetExtension(DocumentHelper.GetActiveDocumentPath());
+            if (string.IsNullOrWhiteSpace(activeDocumentExtension))
+                return;
+
+            var fileType = SyntaxHelper.GetFileType(activeDocumentExtension);
+            if (fileType != FileType.Markup && fileType != FileType.Stylesheet)
+                return;
+
+            var selectedItem = SelectItemHelper.FindNewSelectedItem(_actionUtilsService, docView, fileType == FileType.Stylesheet, false);
+            if (!selectedItem.HasValue)
+                return;
+
+            docView.TextView.Selection.Select(new SnapshotSpan(docView.TextView.TextBuffer.CurrentSnapshot, selectedItem.Value.Item1, selectedItem.Value.Item2 - selectedItem.Value.Item1), false);
+            docView.TextView.Caret.MoveTo(new SnapshotPoint(docView.TextView.TextBuffer.CurrentSnapshot, selectedItem.Value.Item1));
+            docView.TextView.Caret.EnsureVisible();
+        }
+        catch (Exception ex)
+        {
+            await ex.LogAsync("Error while selecting next item.");
+        }
     }
 }

@@ -59,8 +59,8 @@ internal sealed class MergeLinesCommand : BaseDICommand
 
                 var position = docView.TextView.Caret.Position.BufferPosition.Position;
                 var documentContent = docView.TextView.TextBuffer.CurrentSnapshot.GetText();
-                var syntaxType = SyntaxHelper.GetSyntaxType(activeDocumentExtension);
-                if (syntaxType == FileType.None)
+                var fileType = SyntaxHelper.GetFileType(activeDocumentExtension);
+                if (fileType == FileType.None)
                     return;
 
                 if (position == 0)
@@ -68,7 +68,7 @@ internal sealed class MergeLinesCommand : BaseDICommand
                 else if (position == documentContent.Length)
                     position--;
 
-                if (syntaxType == FileType.Markup)
+                if (fileType == FileType.Markup)
                 {
                     var matchResult = _htmlMatcherService.Match(documentContent, position);
                     if (matchResult is null || !matchResult.ClosingTagRange.HasValue)
@@ -77,7 +77,7 @@ internal sealed class MergeLinesCommand : BaseDICommand
                     selectedText = documentContent.Substring(matchResult.OpeningTagRange.Item1, matchResult.ClosingTagRange.Value.Item2 - matchResult.OpeningTagRange.Item1);
                     startEditPosition = matchResult.OpeningTagRange.Item1;
                 }
-                else if (syntaxType == FileType.Stylesheet)
+                else if (fileType == FileType.Stylesheet)
                 {
                     var matchResult = _cssMatcherService.Match(documentContent, position);
                     if (matchResult is null)
