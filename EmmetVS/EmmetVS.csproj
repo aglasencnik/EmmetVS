@@ -78,6 +78,7 @@
     <Compile Include="Helpers\ExtensionInitializationHelper.cs" />
     <Compile Include="Helpers\HttpClientHelper.cs" />
     <Compile Include="Helpers\IncrementDecrementHelper.cs" />
+    <Compile Include="Helpers\MathExpressionEvaluationHelper.cs" />
     <Compile Include="Helpers\OptionsHelper.cs" />
     <Compile Include="Helpers\OptionsUserControlHelper.cs" />
     <Compile Include="Helpers\StylesheetHelper.cs" />
