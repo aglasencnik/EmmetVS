@@ -45,11 +45,11 @@ internal static class SyntaxHelper
         if (string.IsNullOrWhiteSpace(extension))
             return FileType.None;
 
-        if (HtmlOptions.Instance.SupportedFileTypes.Contains(extension.TrimStart('.')))
+        if (HtmlOptions.Instance.SupportedFileTypes.Contains(extension))
             return FileType.Markup;
-        else if (CssOptions.Instance.SupportedFileTypes.Contains(extension.TrimStart('.')))
+        else if (CssOptions.Instance.SupportedFileTypes.Contains(extension))
             return FileType.Stylesheet;
-        else if (XslOptions.Instance.SupportedFileTypes.Contains(extension.TrimStart('.')))
+        else if (XslOptions.Instance.SupportedFileTypes.Contains(extension))
             return FileType.Xsl;
         else
             return FileType.None;
