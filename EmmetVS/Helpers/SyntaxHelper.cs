@@ -31,7 +31,7 @@ internal static class SyntaxHelper
         {
             FileType.Markup => GetMarkupSyntaxes().FirstOrDefault(s => s == extension.TrimStart('.')),
             FileType.Stylesheet => GetStylesheetSyntaxes().FirstOrDefault(s => s == extension.TrimStart('.')),
-            _ => string.Empty,
+            _ => fileType == FileType.Markup ? "html" : fileType == FileType.Stylesheet ? "css" : "",
         };
     }
 

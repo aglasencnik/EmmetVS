@@ -46,11 +46,19 @@ internal static class OptionsHelper
             MarkupAttrributes = options.MarkupAttrributes
                 .Split(',')
                 .Select(x => x.Trim().Split(':'))
-                .ToDictionary(x => x[0].Trim(), x => x[1].Trim()),
+                .Where(x => x.Length == 2)
+                .ToDictionary(
+                    x => x[0].Trim(), 
+                    x => x[1].Trim()
+                ),
             MarkupValuePrefix = options.MarkupValuePrefix
                 .Split(',')
                 .Select(x => x.Trim().Split(':'))
-                .ToDictionary(x => x[0].Trim(), x => x[1].Trim()),
+                .Where(x => x.Length == 2)
+                .ToDictionary(
+                    x => x[0].Trim(),
+                    x => x[1].Trim()
+                ),
             CommentEnabled = options.CommentEnabled,
             CommentTrigger = options.CommentTrigger.Split(',').Select(x => x.Trim()).ToArray(),
             CommentBefore = options.CommentBefore,
@@ -69,7 +77,11 @@ internal static class OptionsHelper
             StylesheetUnitAliases = options.StylesheetUnitAliases
                 .Split(',')
                 .Select(x => x.Trim().Split(':'))
-                .ToDictionary(x => x[0].Trim(), x => x[1].Trim()),
+                .Where(x => x.Length == 2)
+                .ToDictionary(
+                    x => x[0].Trim(),
+                    x => x[1].Trim()
+                ),
             StylesheetJson = options.StylesheetJson,
             StylesheetJsonDoubleQuotes = options.StylesheetJsonDoubleQuotes,
             StylesheetFuzzySearchMinScore = options.StylesheetFuzzySearchMinScore,
