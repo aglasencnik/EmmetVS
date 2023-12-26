@@ -309,8 +309,8 @@
 		<KeyBinding guid="EmmetVS" id="SplitJoinTagCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="J" />
 		<KeyBinding guid="EmmetVS" id="RemoveTagCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="K" />
 		<KeyBinding guid="EmmetVS" id="MergeLinesCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="M" />
-		<KeyBinding guid="EmmetVS" id="NextEditPointCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_LEFT" />
-		<KeyBinding guid="EmmetVS" id="PreviousEditPointCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_RIGHT" />
+		<KeyBinding guid="EmmetVS" id="NextEditPointCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_RIGHT" />
+		<KeyBinding guid="EmmetVS" id="PreviousEditPointCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_LEFT" />
 		<KeyBinding guid="EmmetVS" id="SelectNextItemCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="VK_OEM_PERIOD" />
 		<KeyBinding guid="EmmetVS" id="SelectPreviousItemCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="VK_OEM_COMMA" />
 		<KeyBinding guid="EmmetVS" id="ToggleCommentCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="VK_OEM_2" />
