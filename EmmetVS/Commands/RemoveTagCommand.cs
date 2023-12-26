@@ -46,8 +46,8 @@ internal sealed class RemoveTagCommand : BaseDICommand
 
             var position = docView.TextView.Caret.Position.BufferPosition.Position;
             var documentContent = docView.TextView.TextBuffer.CurrentSnapshot.GetText();
-            var syntaxType = SyntaxHelper.GetSyntaxType(activeDocumentExtension);
-            if (syntaxType != FileType.Markup)
+            var fileType = SyntaxHelper.GetFileType(activeDocumentExtension);
+            if (fileType != FileType.Markup)
                 return;
 
             if (position == 0)

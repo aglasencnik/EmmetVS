@@ -44,11 +44,11 @@ internal class SelectPreviousItemCommand : BaseDICommand
             if (string.IsNullOrWhiteSpace(activeDocumentExtension))
                 return;
 
-            var syntaxType = SyntaxHelper.GetSyntaxType(activeDocumentExtension);
-            if (syntaxType != FileType.Markup && syntaxType != FileType.Stylesheet)
+            var fileType = SyntaxHelper.GetFileType(activeDocumentExtension);
+            if (fileType != FileType.Markup && fileType != FileType.Stylesheet)
                 return;
 
-            var selectedItem = SelectItemHelper.FindNewSelectedItem(_actionUtilsService, docView, syntaxType == FileType.Stylesheet, true);
+            var selectedItem = SelectItemHelper.FindNewSelectedItem(_actionUtilsService, docView, fileType == FileType.Stylesheet, true);
             if (!selectedItem.HasValue)
                 return;
 

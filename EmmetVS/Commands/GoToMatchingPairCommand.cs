@@ -49,8 +49,8 @@ internal sealed class GoToMatchingPairCommand : BaseDICommand
 
             var position = docView.TextView.Caret.Position.BufferPosition.Position;
             var documentContent = docView.TextView.TextBuffer.CurrentSnapshot.GetText();
-            var syntaxType = SyntaxHelper.GetSyntaxType(activeDocumentExtension);
-            if (syntaxType == FileType.None)
+            var fileType = SyntaxHelper.GetFileType(activeDocumentExtension);
+            if (fileType == FileType.None)
                 return;
 
             if (position == 0)
@@ -58,7 +58,7 @@ internal sealed class GoToMatchingPairCommand : BaseDICommand
             else if (position == documentContent.Length)
                 position--;
 
-            if (syntaxType == FileType.Markup)
+            if (fileType == FileType.Markup)
             {
                 var matchResult = _htmlMatcherService.Match(documentContent, position);
                 if (matchResult is null)
@@ -80,7 +80,7 @@ internal sealed class GoToMatchingPairCommand : BaseDICommand
                     docView.TextView.Caret.MoveTo(point);
                 }
             }
-            else if (syntaxType == FileType.Stylesheet)
+            else if (fileType == FileType.Stylesheet)
             {
                 var matchResult = _cssMatcherService.Match(documentContent, position);
                 if (matchResult is null)

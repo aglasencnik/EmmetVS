@@ -8,4 +8,5 @@ internal enum FileType
     None,
     Markup,
     Stylesheet,
+    Xsl
 }

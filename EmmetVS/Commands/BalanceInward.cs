@@ -50,8 +50,8 @@ internal sealed class BalanceInward : BaseDICommand
 
             var position = docView.TextView.Caret.Position.BufferPosition.Position;
             var documentContent = docView.TextView.TextBuffer.CurrentSnapshot.GetText();
-            var syntaxType = SyntaxHelper.GetSyntaxType(activeDocumentExtension);
-            if (syntaxType == FileType.None)
+            var fileType = SyntaxHelper.GetFileType(activeDocumentExtension);
+            if (fileType == FileType.None)
                 return;
 
             if (position == 0)
@@ -59,7 +59,7 @@ internal sealed class BalanceInward : BaseDICommand
             else if (position == documentContent.Length)
                 position--;
 
-            if (syntaxType == FileType.Markup)
+            if (fileType == FileType.Markup)
             {
                 var balanceResult = _htmlMatcherService.BalanceInward(documentContent, position);
                 if (balanceResult is null || !balanceResult.Any())
