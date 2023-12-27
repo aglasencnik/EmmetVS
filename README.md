@@ -12,7 +12,7 @@ Supercharge your Visual Studio environment with the power of Emmet! Effortlessly
 
 ## Installation
 
-1. Download the latest release from the [Releases page](https://github.com/aglasencnik/EmmetVS/releases) or the [Visual Studio Marketplace](https://marketplace.visualstudio.com/vs).
+1. Download the latest release from the [Releases page](https://github.com/aglasencnik/EmmetVS/releases) or the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=AmadejGlasencnik.EmmetVS).
 2. Open Visual Studio.
 3. Navigate to `Extensions` > `Manage Extensions`.
 4. Install the downloaded package.
