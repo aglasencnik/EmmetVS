@@ -10,6 +10,7 @@ public class GeneralOptions : BaseOptionModel<GeneralOptions>
 {
     private bool _enable = true;
     private bool _enableAdvanced = false;
+    private bool _enableTabKey = true;
 
     /// <summary>
     /// Gets or sets the property changed event handler.
@@ -52,6 +53,26 @@ public class GeneralOptions : BaseOptionModel<GeneralOptions>
             {
                 _enableAdvanced = value;
                 OnPropertyChanged(nameof(EnableAdvanced));
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets whether to enable expanding abbreviations with tab key.
+    /// </summary>
+    [Category("General Options")]
+    [DisplayName("Enable Expanding Abbreviation With Tab Key")]
+    [Description("Select whether to enable expanding abbreviations with tab key.")]
+    [DefaultValue(true)]
+    public bool EnableTabKey
+    {
+        get => _enableTabKey;
+        set
+        {
+            if (_enableTabKey != value)
+            {
+                _enableTabKey = value;
+                OnPropertyChanged(nameof(EnableTabKey));
             }
         }
     }
