@@ -6,8 +6,6 @@ using EmmetNetSharp.Models;
 using EmmetVS.Enums;
 using EmmetVS.Helpers;
 using EmmetVS.Options;
-using Microsoft.VisualStudio.TextManager.Interop;
-using System.Collections.Generic;
 using System.IO;
 
 namespace EmmetVS.Commands;
@@ -54,7 +52,7 @@ internal sealed class ExpandAbbreviationCommand : BaseDICommand
             var currentLine = docView.TextView.TextSnapshot.GetLineFromPosition(caretPosition);
             var lineText = currentLine.GetText();
             var config = OptionsHelper.GetAbbreviationOptions();
-            var abbreviation = _abbreviationService.ExtractAbbreviation(lineText, caretPosition);
+            var abbreviation = _abbreviationService.ExtractAbbreviation(lineText.TrimEnd(), caretPosition);
             if (abbreviation is null)
                 return;
 
