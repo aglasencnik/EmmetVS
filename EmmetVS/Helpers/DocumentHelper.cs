@@ -31,4 +31,30 @@ internal static class DocumentHelper
         if (dte.Commands.Item(command).IsAvailable)
             dte.ExecuteCommand(command);
     }
+
+    /// <summary>
+    /// Comments selection.
+    /// </summary>
+    internal static void CommentSelection()
+    {
+        ThreadHelper.ThrowIfNotOnUIThread();
+
+        var dte = (DTE)ServiceProvider.GlobalProvider.GetService(typeof(DTE));
+        var command = "Edit.CommentSelection";
+        if (dte.Commands.Item(command).IsAvailable)
+            dte.ExecuteCommand(command);
+    }
+
+    /// <summary>
+    /// Uncomments selection.
+    /// </summary>
+    internal static void UncommentSelection()
+    {
+        ThreadHelper.ThrowIfNotOnUIThread();
+
+        var dte = (DTE)ServiceProvider.GlobalProvider.GetService(typeof(DTE));
+        var command = "Edit.UncommentSelection";
+        if (dte.Commands.Item(command).IsAvailable)
+            dte.ExecuteCommand(command);
+    }
 }
