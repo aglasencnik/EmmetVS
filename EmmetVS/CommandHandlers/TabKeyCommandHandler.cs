@@ -42,7 +42,7 @@ internal sealed class TabKeyCommandHandler : ICommandHandler<TabKeyCommandArgs>
         {
             if (Keyboard.Modifiers == ModifierKeys.None)
             {
-                if (!GeneralOptions.Instance.Enable || !GeneralOptions.Instance.EnableAdvanced || !GeneralOptions.Instance.EnableTabKey)
+                if (!GeneralOptions.Instance.Enable || !GeneralOptions.Instance.EnableTabKey)
                     return false;
 
                 var docView = VS.Documents.GetActiveDocumentViewAsync().GetAwaiter().GetResult();

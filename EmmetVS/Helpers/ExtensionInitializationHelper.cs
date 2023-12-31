@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace EmmetVS.Helpers;
 
@@ -19,15 +20,17 @@ internal static class ExtensionInitializationHelper
         if (RuntimeOptions.Instance.DefaultValuesSet)
             return;
 
-        var htmlSnippets = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(SnippetDefaults.HtmlSnippetsLocation) ?? string.Empty);
-        var cssSnippets = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(SnippetDefaults.CssSnippetsLocation) ?? string.Empty);
-        var xslSnippets = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(SnippetDefaults.XslSnippetsLocation) ?? string.Empty);
+        var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-        var htmlSupportedFileTypes = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(SnippetDefaults.HtmlSupportedFileTypesLocation) ?? string.Empty);
-        var cssSupportedFileTypes = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(SnippetDefaults.CssSupportedFileTypesLocation) ?? string.Empty);
-        var xslSupportedFileTypes = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(SnippetDefaults.XslSupportedFileTypesLocation) ?? string.Empty);
+        var htmlSnippets = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Path.Combine(assemblyPath, SnippetDefaults.HtmlSnippetsLocation)) ?? string.Empty);
+        var cssSnippets = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Path.Combine(assemblyPath, SnippetDefaults.CssSnippetsLocation)) ?? string.Empty);
+        var xslSnippets = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Path.Combine(assemblyPath, SnippetDefaults.XslSnippetsLocation)) ?? string.Empty);
 
-        var variables = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(SnippetDefaults.VariablesLocation) ?? string.Empty);
+        var htmlSupportedFileTypes = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(Path.Combine(assemblyPath, SnippetDefaults.HtmlSupportedFileTypesLocation)) ?? string.Empty);
+        var cssSupportedFileTypes = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(Path.Combine(assemblyPath, SnippetDefaults.CssSupportedFileTypesLocation)) ?? string.Empty);
+        var xslSupportedFileTypes = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(Path.Combine(assemblyPath, SnippetDefaults.XslSupportedFileTypesLocation)) ?? string.Empty);
+
+        var variables = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Path.Combine(assemblyPath, SnippetDefaults.VariablesLocation)) ?? string.Empty);
 
         if (htmlSnippets is not null && htmlSnippets.Any())
         {

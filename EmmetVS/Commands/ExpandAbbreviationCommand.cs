@@ -33,7 +33,7 @@ internal sealed class ExpandAbbreviationCommand : BaseDICommand
     {
         try
         {
-            if (!GeneralOptions.Instance.Enable || !GeneralOptions.Instance.EnableAdvanced)
+            if (!GeneralOptions.Instance.Enable)
                 return;
 
             var docView = await VS.Documents.GetActiveDocumentViewAsync();
