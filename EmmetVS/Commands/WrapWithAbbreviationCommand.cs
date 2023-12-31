@@ -39,7 +39,7 @@ internal sealed class WrapWithAbbreviationCommand : BaseDICommand
     {
         try
         {
-            if (!GeneralOptions.Instance.Enable || !GeneralOptions.Instance.EnableAdvanced)
+            if (!GeneralOptions.Instance.Enable)
                 return;
 
             var docView = await VS.Documents.GetActiveDocumentViewAsync();
