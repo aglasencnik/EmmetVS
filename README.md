@@ -22,7 +22,7 @@ Supercharge your Visual Studio environment with the power of Emmet! Effortlessly
 To use EmmetVS, follow these steps:
 
 1. Enable the extension via the Options page: `Tools` > `Options` > `EmmetVS`.
-2. When writing Emmet expressions, remember to press the designated hotkey, `Ctrl + Shift + Alt + E`, before entering your abbreviation.
+2. When writing Emmet expressions, remember to press the designated hotkey, `Ctrl + E`, before entering your abbreviation.
 3. Continue typing your abbreviation, and EmmetVS will expand it into the corresponding HTML/XML or CSS code snippet.
 4. For additional customization, you can modify Emmet snippets or add/remove supported file types for each snippet language.
 
