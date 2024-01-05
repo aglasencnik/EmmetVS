@@ -301,29 +301,29 @@
 	</Commands>
 
 	<KeyBindings>
-		<KeyBinding guid="EmmetVS" id="ExpandAbbreviationCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" key2="VK_TAB" />
-		<KeyBinding guid="EmmetVS" id="WrapWithAbbreviationCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="A" />
-		<KeyBinding guid="EmmetVS" id="BalanceOutwardCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="D" />
-		<KeyBinding guid="EmmetVS" id="BalanceInwardCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="D" />
-		<KeyBinding guid="EmmetVS" id="GoToMatchingPairCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="T" />
-		<KeyBinding guid="EmmetVS" id="SplitJoinTagCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="J" />
-		<KeyBinding guid="EmmetVS" id="RemoveTagCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="K" />
-		<KeyBinding guid="EmmetVS" id="MergeLinesCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="M" />
-		<KeyBinding guid="EmmetVS" id="NextEditPointCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_RIGHT" />
-		<KeyBinding guid="EmmetVS" id="PreviousEditPointCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_LEFT" />
-		<KeyBinding guid="EmmetVS" id="SelectNextItemCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="VK_OEM_PERIOD" />
-		<KeyBinding guid="EmmetVS" id="SelectPreviousItemCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="VK_OEM_COMMA" />
-		<KeyBinding guid="EmmetVS" id="ToggleCommentCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="VK_OEM_2" />
-		<KeyBinding guid="EmmetVS" id="ReflectCSSValueCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="B" />
-		<KeyBinding guid="EmmetVS" id="UpdateImageSizeCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="U" />
-		<KeyBinding guid="EmmetVS" id="EvaluateMathExpressionCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="Y" />
-		<KeyBinding guid="EmmetVS" id="IncrementByOneCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="VK_UP" />
-		<KeyBinding guid="EmmetVS" id="DecrementByOneCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control" key2="VK_DOWN" />
-		<KeyBinding guid="EmmetVS" id="IncrementByPointOneCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_UP" />
-		<KeyBinding guid="EmmetVS" id="DecrementByPointOneCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Alt" key2="VK_DOWN" />
-		<KeyBinding guid="EmmetVS" id="IncrementByTenCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="VK_UP" />
-		<KeyBinding guid="EmmetVS" id="DecrementByTenCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="VK_DOWN" />
-		<KeyBinding guid="EmmetVS" id="EncodeDecodeImageToDataURLCommand" editor="guidVSStd97" mod1="Control Shift Alt" key1="E" mod2="Control Shift" key2="I" />
+		<KeyBinding guid="EmmetVS" id="ExpandAbbreviationCommand" editor="guidVSStd97" mod1="Control" key1="E" key2="VK_TAB" />
+		<KeyBinding guid="EmmetVS" id="WrapWithAbbreviationCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Shift" key2="A" />
+		<KeyBinding guid="EmmetVS" id="BalanceOutwardCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control" key2="D" />
+		<KeyBinding guid="EmmetVS" id="BalanceInwardCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Shift" key2="D" />
+		<KeyBinding guid="EmmetVS" id="GoToMatchingPairCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Shift" key2="T" />
+		<KeyBinding guid="EmmetVS" id="SplitJoinTagCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control" key2="J" />
+		<KeyBinding guid="EmmetVS" id="RemoveTagCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control" key2="K" />
+		<KeyBinding guid="EmmetVS" id="MergeLinesCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Shift" key2="M" />
+		<KeyBinding guid="EmmetVS" id="NextEditPointCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Alt" key2="VK_RIGHT" />
+		<KeyBinding guid="EmmetVS" id="PreviousEditPointCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Alt" key2="VK_LEFT" />
+		<KeyBinding guid="EmmetVS" id="SelectNextItemCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Shift" key2="VK_OEM_PERIOD" />
+		<KeyBinding guid="EmmetVS" id="SelectPreviousItemCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Shift" key2="VK_OEM_COMMA" />
+		<KeyBinding guid="EmmetVS" id="ToggleCommentCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control" key2="VK_OEM_2" />
+		<KeyBinding guid="EmmetVS" id="ReflectCSSValueCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control" key2="B" />
+		<KeyBinding guid="EmmetVS" id="UpdateImageSizeCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Shift" key2="U" />
+		<KeyBinding guid="EmmetVS" id="EvaluateMathExpressionCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Shift" key2="Y" />
+		<KeyBinding guid="EmmetVS" id="IncrementByOneCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control" key2="VK_UP" />
+		<KeyBinding guid="EmmetVS" id="DecrementByOneCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control" key2="VK_DOWN" />
+		<KeyBinding guid="EmmetVS" id="IncrementByPointOneCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Alt" key2="VK_UP" />
+		<KeyBinding guid="EmmetVS" id="DecrementByPointOneCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Alt" key2="VK_DOWN" />
+		<KeyBinding guid="EmmetVS" id="IncrementByTenCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Shift" key2="VK_UP" />
+		<KeyBinding guid="EmmetVS" id="DecrementByTenCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Shift" key2="VK_DOWN" />
+		<KeyBinding guid="EmmetVS" id="EncodeDecodeImageToDataURLCommand" editor="guidVSStd97" mod1="Control" key1="E" mod2="Control Shift" key2="I" />
 	</KeyBindings>
 
 	<Symbols>
