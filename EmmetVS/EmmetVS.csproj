@@ -74,6 +74,7 @@
     <Compile Include="Enums\ImageSourceType.cs" />
     <Compile Include="Enums\SelfClosingStyle.cs" />
     <Compile Include="Enums\StringCase.cs" />
+    <Compile Include="Helpers\AbbreviationExpanderHelper.cs" />
     <Compile Include="Helpers\DocumentHelper.cs" />
     <Compile Include="Helpers\EditPointHelper.cs" />
     <Compile Include="Helpers\ExtensionInitializationHelper.cs" />

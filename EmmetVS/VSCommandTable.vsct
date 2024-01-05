@@ -84,7 +84,7 @@
 				<Icon guid="ImageCatalogGuid" id="WrapPanel" />
 				<CommandFlag>IconIsMoniker</CommandFlag>
 				<Strings>
-					<ButtonText>Wrap with Abbreviation</ButtonText>
+					<ButtonText>Wrap with Abbreviation (Selection + Tab)</ButtonText>
 				</Strings>
 			</Button>
 
