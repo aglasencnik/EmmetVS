@@ -11,7 +11,7 @@ namespace EmmetVS
         public const string Name = "EmmetVS";
         public const string Description = @"Supercharge your Visual Studio environment with the power of Emmet! Effortlessly expand abbreviations into complex HTML/XML and CSS code snippets. Streamline your web development process and elevate your coding efficiency like never before.";
         public const string Language = "en-US";
-        public const string Version = "1.0.1";
+        public const string Version = "1.1.0";
         public const string Author = "Amadej Glasenčnik";
         public const string Tags = "visual-studio, vsix, emmet, html, css, xml, snippets, tools";
     }

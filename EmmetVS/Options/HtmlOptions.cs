@@ -12,6 +12,11 @@ namespace EmmetVS.Options;
 public class HtmlOptions : BaseOptionModel<HtmlOptions>
 {
     /// <summary>
+    /// Gets or sets the property changed event handler.
+    /// </summary>
+    public event PropertyChangedEventHandler SnippetsChanged;
+
+    /// <summary>
     /// Serialized representation of Snippets dictionary.
     /// </summary>
     [Browsable(false)]
@@ -24,7 +29,11 @@ public class HtmlOptions : BaseOptionModel<HtmlOptions>
     public Dictionary<string, string> Snippets
     {
         get { return JsonConvert.DeserializeObject<Dictionary<string, string>>(SnippetsSerialized ?? "{}"); }
-        set { SnippetsSerialized = JsonConvert.SerializeObject(value); }
+        set 
+        { 
+            SnippetsSerialized = JsonConvert.SerializeObject(value); 
+            OnSnippetsChanged();
+        }
     }
 
     /// <summary>
@@ -41,5 +50,13 @@ public class HtmlOptions : BaseOptionModel<HtmlOptions>
     {
         get { return JsonConvert.DeserializeObject<List<string>>(SupportedFileTypesSerialized ?? "[]")?.Select(e => e.ToLower())?.ToList(); }
         set { SupportedFileTypesSerialized = JsonConvert.SerializeObject(value?.Select(e => e.ToLower())); }
+    }
+
+    /// <summary>
+    /// Handles on property changed event for snippets.
+    /// </summary>
+    protected virtual void OnSnippetsChanged()
+    {
+        SnippetsChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Snippets)));
     }
 }

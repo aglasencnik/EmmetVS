@@ -1,8 +1,6 @@
 ﻿using Community.VisualStudio.Toolkit;
 using Community.VisualStudio.Toolkit.DependencyInjection.Core;
 using EmmetNetSharp.Interfaces;
-using EmmetNetSharp.Models;
-using EmmetVS.Enums;
 using EmmetVS.Helpers;
 using EmmetVS.Options;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +9,7 @@ using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Editor.Commanding.Commands;
 using Microsoft.VisualStudio.Utilities;
 using System.ComponentModel.Composition;
-using System.IO;
+using System.Linq;
 using System.Windows.Input;
 
 namespace EmmetVS.CommandHandlers;
@@ -42,11 +40,18 @@ internal sealed class TabKeyCommandHandler : ICommandHandler<TabKeyCommandArgs>
         {
             if (Keyboard.Modifiers == ModifierKeys.None)
             {
-                if (!GeneralOptions.Instance.Enable || !GeneralOptions.Instance.EnableTabKey)
+                if (!GeneralOptions.Instance.Enable)
                     return false;
 
                 var docView = VS.Documents.GetActiveDocumentViewAsync().GetAwaiter().GetResult();
                 if (docView?.TextView is null)
+                    return false;
+
+                var selection = docView.TextView.Selection;
+                var selectedText = selection.SelectedSpans?.FirstOrDefault().GetText();
+
+                if ((!string.IsNullOrWhiteSpace(selectedText) && !GeneralOptions.Instance.EnableWrapWithTabKey) ||
+                    (string.IsNullOrWhiteSpace(selectedText) && !GeneralOptions.Instance.EnableExpandWithTabKey))
                     return false;
 
                 var serviceProvider = VS.GetServiceAsync<SToolkitServiceProvider<EmmetVSPackage>, IToolkitServiceProvider<EmmetVSPackage>>().GetAwaiter().GetResult();
@@ -54,44 +59,16 @@ internal sealed class TabKeyCommandHandler : ICommandHandler<TabKeyCommandArgs>
                 if (abbreviationService is null)
                     return false;
 
-                var activeDocumentExtension = Path.GetExtension(DocumentHelper.GetActiveDocumentPath());
-                if (string.IsNullOrWhiteSpace(activeDocumentExtension))
-                    return false;
-
-                var fileType = SyntaxHelper.GetFileType(activeDocumentExtension);
-                if (fileType == FileType.None)
-                    return false;
-
-                var caretPosition = docView.TextView.Caret.Position.BufferPosition.Position;
-                var currentLine = docView.TextView.TextSnapshot.GetLineFromPosition(caretPosition);
-                var lineText = currentLine.GetText();
-                var textAfterCaret = lineText.Substring(caretPosition - currentLine.Start.Position);
-                if (!string.IsNullOrWhiteSpace(textAfterCaret))
-                    return false;
-
-                var config = OptionsHelper.GetAbbreviationOptions();
-                var abbreviation = abbreviationService.ExtractAbbreviation(lineText.TrimEnd(), caretPosition);
-                if (abbreviation is null)
-                    return false;
-
-                var expandedAbbreviation = abbreviationService.ExpandAbbreviation(abbreviation.Abbreviation, new UserConfig
+                if (string.IsNullOrWhiteSpace(selectedText))
+                    return AbbreviationExpanderHelper.ExpandAbbreviation(docView, abbreviationService);
+                else
                 {
-                    Syntax = SyntaxHelper.GetFileSyntax(activeDocumentExtension, fileType),
-                    Type = fileType.ToString().ToLower(),
-                    Options = config,
-                    Variables = VariableOptions.Instance.Variables,
-                    Snippets = fileType == FileType.Markup ? HtmlOptions.Instance.Snippets : (fileType == FileType.Stylesheet ? CssOptions.Instance.Snippets : XslOptions.Instance.Snippets)
-                });
+                    var htmlMatcherService = serviceProvider.GetRequiredService<IHtmlMatcherService>();
+                    if (htmlMatcherService is null)
+                        return false;
 
-                if (string.IsNullOrWhiteSpace(expandedAbbreviation))
-                    return false;
-
-                using var edit = docView.TextBuffer.CreateEdit();
-                edit.Replace(currentLine.Start.Position + abbreviation.Start, abbreviation.End - abbreviation.Start, expandedAbbreviation);
-                edit.Apply();
-
-                DocumentHelper.FormatDocument();
-                return true;
+                    return AbbreviationExpanderHelper.WrapWithAbbreviation(docView, htmlMatcherService, abbreviationService);
+                }
             }
 
             return false;

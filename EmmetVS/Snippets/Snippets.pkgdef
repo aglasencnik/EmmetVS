@@ -1,0 +1,11 @@
+// CSS Snippets
+[$RootKey$\Languages\CodeExpansions\CSS\Paths]
+"EmmetVS CSS Snippets"="$PackageFolder$\EmmetVS CSS Snippets"
+
+// HTML Snippets
+[$RootKey$\Languages\CodeExpansions\HTML\Paths]
+"EmmetVS HTML Snippets"="$PackageFolder$\EmmetVS HTML Snippets"
+
+// XML Snippets
+[$RootKey$\Languages\CodeExpansions\XML\Paths]
+"EmmetVS XML Snippets"="$PackageFolder$\EmmetVS XML Snippets"
