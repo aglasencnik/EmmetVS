@@ -92,6 +92,14 @@ public sealed class EmmetVSPackage : MicrosoftDIToolkitPackage<EmmetVSPackage>
             ExtensionInitializationHelper.CheckCommandsAvailability(commandService);
 
             GeneralOptions.Instance.PropertyChanged += GeneralOptions_PropertyChanged;
+
+            GeneralOptions.Instance.SnippetsChanged += GeneralOptions_SnippetsChanged;
+            CssOptions.Instance.SnippetsChanged += GeneralOptions_SnippetsChanged;
+            HtmlOptions.Instance.SnippetsChanged += GeneralOptions_SnippetsChanged;
+            XslOptions.Instance.SnippetsChanged += GeneralOptions_SnippetsChanged;
+
+            SnippetsHelper.RemovePlaceholderSnippets();
+            SnippetsHelper.UpdateSnippets();
         }
         catch (Exception ex)
         {
@@ -100,7 +108,7 @@ public sealed class EmmetVSPackage : MicrosoftDIToolkitPackage<EmmetVSPackage>
     }
 
     /// <summary>
-    /// Handles the general options property changed event
+    /// Handles the general options property changed event.
     /// </summary>
     /// <param name="sender">Sender object</param>
     /// <param name="e">PropertyChangedEventArgs object</param>
@@ -118,6 +126,29 @@ public sealed class EmmetVSPackage : MicrosoftDIToolkitPackage<EmmetVSPackage>
         catch (Exception ex)
         {
             await ex.LogAsync("Error while handling general options save.");
+        }
+    }
+
+    /// <summary>
+    /// Handles the general options property changed event for snippets.
+    /// </summary>
+    /// <param name="sender">Sender object</param>
+    /// <param name="e">PropertyChangedEventArgs object</param>
+    private void GeneralOptions_SnippetsChanged(object sender, PropertyChangedEventArgs e)
+    {
+        try
+        {
+            if (e.PropertyName == nameof(GeneralOptions.Instance.EnableSnippets) ||
+                e.PropertyName == nameof(CssOptions.Instance.Snippets) ||
+                e.PropertyName == nameof(HtmlOptions.Instance.Snippets) ||
+                e.PropertyName == nameof(XslOptions.Instance.Snippets))
+            {
+                SnippetsHelper.UpdateSnippets();
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.Log("Error while handling snippets save.");
         }
     }
 }

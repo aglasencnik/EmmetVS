@@ -12,11 +12,17 @@ public class GeneralOptions : BaseOptionModel<GeneralOptions>
     private bool _enableAdvanced = false;
     private bool _enableExpandWithTabKey = true;
     private bool _enableWrapWithTabKey = true;
+    private bool _enableSnippets = true;
 
     /// <summary>
     /// Gets or sets the property changed event handler.
     /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
+
+    /// <summary>
+    /// Gets or sets the property changed event handler.
+    /// </summary>
+    public event PropertyChangedEventHandler SnippetsChanged;
 
     /// <summary>
     /// Gets or sets whether extension is enabled.
@@ -99,11 +105,39 @@ public class GeneralOptions : BaseOptionModel<GeneralOptions>
     }
 
     /// <summary>
-    /// Handles on property changed event
+    /// Gets or sets whether to enable snippets.
+    /// </summary>
+    [Category("General Options")]
+    [DisplayName("Enable Snippets")]
+    [Description("Select whether to enable snippets.")]
+    [DefaultValue(true)]
+    public bool EnableSnippets
+    {
+        get => _enableSnippets;
+        set
+        {
+            if (_enableSnippets != value)
+            {
+                _enableSnippets = value;
+                OnSnippetsChanged();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Handles on property changed event.
     /// </summary>
     /// <param name="propertyName">Property name</param>
     protected virtual void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    /// <summary>
+    /// Handles on property changed event for snippets.
+    /// </summary>
+    protected virtual void OnSnippetsChanged()
+    {
+        SnippetsChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EnableSnippets)));
     }
 }

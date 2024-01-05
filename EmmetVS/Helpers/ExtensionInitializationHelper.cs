@@ -1,5 +1,5 @@
-﻿using EmmetVS.Options;
-using EmmetVS.Snippets;
+﻿using EmmetVS.DefaultSnippets;
+using EmmetVS.Options;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
